@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row mt-2 d-flex justify-content-center">
+     <div class="col-md-8">
+      <div class="card">
+        <h5 class="card-header text-white" style="background: rgb(134,25,121);">Cadastro de Usuário</h5>
+        <div class="card-body">
+            <form [formGroup]="cadastroForm" (ngSubmit)="salvar()" >
+                <div class="form-group">
+                  <label>Nome:</label>
+                  <input type="text" [ngClass]="{'is-invalid': submitted && cadastro.Nome.errors }" class="form-control" placeholder="Informe o nome" formControlName="Nome">
+                   <div *ngIf="submitted && cadastro.Nome.errors" class="invalid-feedback">
+                     <div *ngIf="cadastro.Nome.errors.required">Campo obrigatório!</div>
+                     <div *ngIf="cadastro.Nome.errors.minlength">Não pode ser menor que 3 caracteres</div>
+                   </div>
+                </div>
+                <div class="form-group mt-2">
+                  <label>Data de Nascimento:</label>
+                  <input type="date" [ngClass]="{'is-invalid': submitted && cadastro.DataNascimento.errors }" class="form-control" placeholder="Informe a data de nascimento" formControlName="DataNascimento">
+                  <div *ngIf="submitted && cadastro.DataNascimento.errors" class="invalid-feedback">
+                    <div *ngIf="cadastro.DataNascimento.errors.required">Campo obrigatório!</div>
+                  </div>
+                </div>
+                <div class="form-group mt-2">
+                  <label>Email:</label>
+                  <input type="text" class="form-control" [ngClass]="{'is-invalid': submitted && cadastro.Email.errors }" placeholder="Informe o email" formControlName="Email">
+                  <div *ngIf="submitted && cadastro.Email.errors" class="invalid-feedback">
+                    <div *ngIf="cadastro.Email.errors.required">Campo obrigatório!</div>
+                  </div>
+                </div>
+                <div class="form-group mt-2">
+                  <label>Senha</label>
+                  <input type="password" [ngClass]="{'is-invalid': submitted && cadastro.Senha.errors }" class="form-control" placeholder="Informe a senha" formControlName="Senha">
+                  <div *ngIf="submitted && cadastro.Senha.errors" class="invalid-feedback">
+                    <div *ngIf="cadastro.Senha.errors.required">Campo obrigatório!</div>
+                  </div>
+                </div>
+                <div class="form-group mt-2">
+                  <label>Sexo:</label>
+                  <select class="form-select" formControlName="Sexo"  [ngClass]="{'is-invalid': submitted && cadastro.Sexo.errors }"  >
+                    <option value="" selected>Selecione</option>
+                    <option *ngFor="let genero of generos" [ngValue]="genero">{{genero.Descricao}}</option>
+                  </select>
+                  <div *ngIf="submitted && cadastro.Sexo.errors" class="invalid-feedback">
+                     <div *ngIf="cadastro.Sexo.errors.required">Campo obrigatório!</div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2"><i class="fas fa-save"></i> Salvar</button>
+              </form>
+        </div>
+     </div>
+  </div>
+</div>
+
+

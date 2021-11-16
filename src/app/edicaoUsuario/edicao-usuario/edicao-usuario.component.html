@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row mt-2 d-flex justify-content-center">
+    <div class="col-md-8">
+      <div class="card ">
+        <h5 class="card-header text-white" style="background: rgb(134,25,121);">Edição de Usuário</h5>
+        <div class="card-body">
+            <form [formGroup]="edicaoFormGroup" (ngSubmit)="editar()">
+              <input type="hidden" #txtIdUsuario formControlName="UsuarioId">
+              <div class="form-group">
+                  <label>Nome:</label>
+                  <input type="text" [ngClass]="{'is-invalid': submitted && edicao.Nome.errors}" class="form-control" placeholder="Informe o nome" formControlName="Nome" required>
+                  <div *ngIf="submitted&& edicao.Nome.errors" class="invalid-feedback">
+                    <div *ngIf="edicao.Nome.errors.required">Campo obrigatório!</div>
+                    <div *ngIf="edicao.Nome.errors.minlength">Não pode ser menor que 3 caracteres</div>
+                  </div>
+                </div>
+                <div class="form-group mt-2">
+                  <label>Data de Nascimento:</label>
+                  <input type="date" [ngClass]="{'is-invalid': submitted && edicao.DataNascimento.errors}" class="form-control" placeholder="Informe a data de nascimento" formControlName="DataNascimento">
+                  <div *ngIf="submitted && edicao.DataNascimento.errors" class="invalid-feedback">
+                    <div *ngIf="edicao.DataNascimento.errors.required">Campo obrigatório!</div>
+                    <div *ngIf="edicao.DataNascimento.errors.minlength">Não pode ser menor que 3 caracteres</div>
+                  </div>
+                </div>
+                <div class="form-group  mt-2">
+                  <label>Email:</label>
+                  <input type="text" [ngClass]="{'is-invalid': submitted && edicao.Email.errors}" class="form-control" placeholder="Informe o email" formControlName="Email">
+                   <div *ngIf="submitted && edicao.Email.errors" class="invalid-feedback">
+                     <div *ngIf="edicao.Email.errors.required">Campo obrigatório!</div>
+                  </div>
+                </div>
+                <div class="form-group  mt-2">
+                  <label>Senha</label>
+                  <input type="password" [ngClass]="{'is-invalid': submitted && edicao.Senha.errors}" class="form-control" placeholder="Informe a senha" formControlName="Senha">
+                  <div *ngIf="submitted && edicao.Senha.errors" class="invalid-feedback">
+                    <div *ngIf="edicao.Senha.errors.required">Campo obrigatório!</div>
+                  </div>
+                </div>
+                <div class="form-group  mt-2">
+                  <label>Status:</label>
+                  <select formControlName="Status" class="form-select" [ngClass]="{'is-invalid': submitted && edicao.Status.errors}">
+                    <option value="">Selecione</option>
+                    <option *ngFor="let stats of statusCollection" [ngValue]="stats">{{stats.Descricao}}</option> 
+                  </select>
+                  <div *ngIf="submitted && edicao.Status.errors" class="invalid-feedback">
+                    <div *ngIf="edicao.Status.errors.required">Campo obrigatório!</div>
+                  </div>
+                </div>
+                <div class="form-group  mt-2">
+                  <label>Sexo:</label>
+                  <select class="form-select" formControlName="Sexo" [ngClass]="{'is-invalid': submitted && edicao.Sexo.errors}">
+                    <option value="">Selecione</option>
+                    <option *ngFor="let genero of generos" [ngValue]="genero">{{genero.Descricao}}</option> 
+                  </select>
+                  <div *ngIf="submitted && edicao.Sexo.errors" class="invalid-feedback">
+                    <div *ngIf="edicao.Sexo.errors.required">Campo obrigatório!</div>
+                  </div>
+                </div>
+                 <button type="submit" class="btn btn-primary mt-2"><i class="fas fa-save"></i> Salvar</button>
+                 <button type="button" class="btn btn-danger ml-2 mt-2" (click)="excluir()"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</button>
+               </form>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
